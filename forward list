@@ -1,0 +1,36 @@
+#include <iostream>
+#include <forward_list>
+
+// singly linked list
+
+void f(std::forward_list<int>& flst)
+{
+	flst.push_front(5);
+
+	auto it = flst.begin();
+	advance(it, 2);
+	flst.insert_after(it, 9);
+
+	auto it2 = flst.before_begin(); // pop/push_front()
+	flst.insert_after(it2, 1);
+
+}
+
+template<typename T>
+void print_list(std::forward_list<T>& flst)
+{
+	for (auto it = flst.begin(); it != flst.end(); ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+}
+
+int main()
+{
+	
+	std::forward_list<int> flst = {2, 3};
+	f(flst);
+
+	print_list<int>(flst);
+
+}
