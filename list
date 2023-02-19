@@ -1,0 +1,54 @@
+#include <iostream>
+#include <list>
+
+// double linked list
+
+void f(std::list<int> &lst)
+{
+	lst.push_back(5);
+	lst.emplace_front(6);
+
+	std::list<int>::iterator it = lst.begin();
+	//auto it = lst.begin();
+	
+	lst.sort();
+
+	lst.pop_back();
+	lst.pop_front();
+
+	lst.unique();
+
+	lst.reverse();
+
+	advance(it, 2);
+	lst.insert(it, 10);
+
+	lst.remove(3);
+
+	std::list<int> lst2 = { 3, 2, 1 };
+	lst.assign(lst2.begin(), lst2.end());
+
+
+}
+
+template<typename T>
+void print_list(const std::list<T> &lst)
+{
+	for (auto it = lst.cbegin(); it != lst.cend(); ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+
+	std::cout << "size: " << lst.size();
+}
+
+int main()
+{
+	std::list<int> lst = {2, 3, 3, 9};
+
+	f(lst); 
+
+	print_list<int>(lst);
+
+	lst.clear();
+}
