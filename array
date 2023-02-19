@@ -1,0 +1,42 @@
+#include <iostream>
+#include <array>
+
+template<typename T, int size>
+void f(std::array<T, size>& arr)
+{
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = rand() % 10;
+	}
+	
+	try 
+	{
+		std::cout << arr.at(6) << std::endl;
+	}
+	catch (const std::exception& ex)
+	{
+		std::cout << ex.what() << std::endl;
+		arr.fill(0);
+	}
+
+}
+
+template<typename T, int size>
+void print_array(std::array<T, size>& arr)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		std::cout << arr[i] << " ";
+	}
+}
+
+int main()
+{
+	std::array<int, 5> arr;
+
+	f<int, 5>(arr);
+
+	print_array<int, 5>(arr);
+
+	
+}
