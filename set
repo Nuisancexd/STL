@@ -1,0 +1,70 @@
+#include <iostream>                         
+#include <set>
+
+// binary tree
+
+void f_set(std::set<int> &set)
+{
+	set = { 4, 2, 1, 5, 10 };
+	set.insert(3);
+
+	std::set<int>::iterator it = set.find(10);
+	if (it != set.end())
+	{
+		std::cout << "found " << *it << std::endl;
+	}
+	else
+	{
+		std::cout << "not found" << std::endl;
+	}
+
+	auto res = set.erase(10);
+	std::cout << res << std::endl;
+}
+
+void f_multiset(std::multiset<int>& mset)
+{
+	mset = { 2, 8, 19, 4 };
+	mset.insert(2);
+
+	std::multiset<int>::iterator it1 = mset.lower_bound(2);
+	std::multiset<int>::iterator it2 = mset.upper_bound(2);
+
+	std::cout << "lower bound: " << *it1 << std::endl;
+	std::cout << "upper bound: " << *it2 << std::endl;
+
+	std::pair<std::set<int>::iterator, std::set<int>::iterator> pit = mset.equal_range(2);
+	std::cout << "first: " << *pit.first << std::endl;
+	std::cout << "second: " << *pit.second << std::endl;
+}
+
+template<typename T>
+void print_set(std::set<T>& set)
+{
+	for (auto& it : set)
+	{
+		std::cout << it << " ";
+	} std::cout << std::endl;
+}
+
+template<typename T>
+void print_mset(std::multiset<T>& mset)
+{
+	for (auto& it : mset)
+	{
+		std::cout << it << " ";
+	} std::cout << std::endl;
+}
+
+int main()
+{
+	std::set<int> btset; //unique, cant changing val
+
+	f_set(btset);
+	print_set<int>(btset);
+
+	std::multiset<int> ms;
+
+	f_multiset(ms);
+	print_mset(ms);
+} 
