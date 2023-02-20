@@ -1,0 +1,61 @@
+#include <iostream>                         
+#include <map>
+
+
+
+int main()
+{
+
+
+	char ch[] = "clown";
+	std::map<int, char*> map; // key, value
+
+	char ch4[] = "wahaha";
+	map.emplace(4, ch4);
+
+	std::pair<int, char*> pr(1, ch);
+	map.insert(pr);
+
+	char ch2[] = "shapito";
+	map.insert(std::make_pair(2, ch2));
+	
+	char ch3[] = "hehe";
+	map.emplace(3, ch3);
+	
+	auto it = map.find(2);
+	if (it != map.end())
+	{
+		std::cout << "value: " << it->second << std::endl;
+	}
+	else
+	{
+		std::cout << "not found key" << std::endl;
+	}
+
+
+	std::map<char*, int> map2;
+	char name1[] = "Clown";
+	char name2[] = "Shapito";
+	char name3[] = "Jester";
+
+	map2.emplace(name1, 83);
+	map2.emplace(name2, 79);
+	map2.emplace(name3, 65);
+
+	char name4[] = "Droll";
+	map2[name4] = 68;
+	std::cout << map2[name4] << std::endl;
+
+	char name5[] = "heh";
+	try
+	{
+		map2.at(name5) = 88;
+	}
+	catch (const std::exception& ex)
+	{
+		std::cout << ex.what() << "\nnot found key: " << name5;
+	}
+
+	map2.erase(name4);
+	
+}
