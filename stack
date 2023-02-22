@@ -1,0 +1,78 @@
+#include <iostream> 
+#include <stack>
+#include <vector>
+#include <list>
+
+
+// push - создает копию объекта
+// emplace - создает объект непосредственно в коллекцию без копирования и перемещения
+
+void stack(std::stack<int>& st)
+{
+
+	st.push(10);
+	st.push(4);
+	st.push(5); 
+	st.emplace(6);
+
+	auto a = st._Get_container(); // deque
+	for (int i = 0; i < st.size(); ++i)
+	{
+		std::cout << a[i] << " ";
+	}std::cout << std::endl;
+
+	std::cout << st.top() << std::endl;
+	st.pop(); // 6
+
+	while (!st.empty())
+	{
+		std::cout << st.top() << " ";
+		st.pop();
+	} std::cout << std::endl;
+
+}
+
+void lst(std::stack<int, std::list<int>>& st_l)
+{
+	st_l.emplace(5);
+	st_l.emplace(6);
+	st_l.emplace(9);
+	st_l.emplace(9);
+
+	auto a = st_l._Get_container(); // list
+
+	for (auto it = a.cbegin(); it != a.cend(); ++it)
+	{
+		std::cout << *it << " ";
+	} std::cout << std::endl;
+}
+
+void vec(std::stack<int, std::vector<int>>& st_v)
+{
+	st_v.emplace(5);
+	st_v.emplace(6);
+	st_v.emplace(9);
+
+	auto a = st_v._Get_container(); // vector
+	
+	for (int i = 0; i < a.size(); ++i)
+	{
+		std::cout << a[i] << " ";
+	} std::cout << std::endl;
+}
+
+int main()
+{
+	std::stack<int> st;
+	
+	stack(st);
+
+	std::cout << "stack w vector" << std::endl;
+	std::stack<int, std::vector<int>> st_vec;
+	vec(st_vec);
+
+	std::cout << "stack w list" << std::endl;
+	std::stack<int, std::list<int>> st_l;
+	lst(st_l);
+
+}
