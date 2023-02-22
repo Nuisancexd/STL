@@ -1,0 +1,58 @@
+#include <iostream>
+#include <queue>
+#include <list>
+#include <vector>
+
+
+void que(std::queue<int> &q)
+{
+	q.emplace(5);
+	q.emplace(1);
+	q.emplace(9);
+	q.emplace(7);
+
+	auto a = q._Get_container();
+	for (int i = 0; i < q.size(); ++i)
+	{
+		std::cout << a[i] << " ";
+	} std::cout << std::endl;
+
+	while (!q.empty())
+	{
+		std::cout << "size: " << q.size() << std::endl;
+		std::cout << "pop elem: " << q.front() << std::endl;
+		q.pop();
+	}
+
+}
+
+
+void p_q(std::priority_queue<int> &pq)
+{
+	pq.push(4);
+	pq.push(6);
+	pq.push(9);
+	pq.push(3);
+	
+	while (!pq.empty())
+	{
+		std::cout << pq.top() << " ";
+		pq.pop();
+	}
+}
+
+
+int main()
+{
+	std::queue<int> q;
+	que(q);
+
+	std::priority_queue<int> pq;
+	p_q(pq);
+
+
+	std::queue<int, std::list<int>> qlst;
+
+	std::priority_queue<int, std::vector<int>> pqvec;
+
+}
