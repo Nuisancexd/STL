@@ -1,0 +1,17 @@
+#include <numeric>                                       
+#include <iostream>                                      
+#include <iterator>                                      
+
+int main()
+{
+    double data[] = { 2.5, 4.5, 6.5, 5.5, 8.5 };
+
+    for (auto iter = std::cbegin(data); iter != std::cend(data); ++iter)
+    {
+        std::cout << *iter << " ";
+    }
+
+    auto total = std::accumulate(std::begin(data), std::end(data), 0.0);
+
+    std::cout << "\nThe sum of the array elements is " << total << std::endl;
+}
