@@ -38,6 +38,12 @@ void make_sh_ptr()
 	std::shared_ptr<Clown> s_ptr = std::make_shared<Clown>();
 }
 
+void sh_ptr_arr()
+{
+	std::cout << "Указатель shared_ptr на динамический массив" << std::endl;
+	std::shared_ptr<Clown[]> clowns(new Clown[5]);
+	std::default_delete<Clown>;
+}
 
 int main()
 {
@@ -46,6 +52,7 @@ int main()
 	s_ptr_f();
 	reference_count();
 	make_sh_ptr();
+	sh_ptr_arr();
 }
 
 /*
