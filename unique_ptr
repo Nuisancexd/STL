@@ -4,7 +4,7 @@
 class Clown
 {
 public:
-	Clown() { std::cout << this <<  " Clown constructor" << std::endl; }
+	Clown() { std::cout << this << " Clown constructor" << std::endl; }
 	~Clown() { std::cout << this << " Clown destructor" << std::endl; }
 
 	void f() { std::cout << "function of class" << std::endl; }
@@ -25,7 +25,7 @@ void unique_ptr_move()
 
 std::unique_ptr<int> int_unique_ptr()
 {
-	std::cout << "Выделение памяти" << std::endl;
+	std::cout << "Динаическое выделение памяти" << std::endl;
 	std::unique_ptr<int> ui_ptr(new int(10));
 	std::cout << ui_ptr << std::endl;
 	return ui_ptr;
@@ -46,8 +46,15 @@ void free_memory()
 
 void make_uniq()
 {
-	std::cout << "Уникальный указатель" << std::endl;
+	std::cout << "Инициализация выделения памяти" << std::endl;
 	std::unique_ptr<Clown> mptr = std::make_unique<Clown>();
+}
+
+void uniq_ptr_arr()
+{
+	std::cout << "Указатель uniq_ptr на динамический массив" << std::endl;
+	std::unique_ptr<Clown[]> clowns{new Clown[5]};
+	std::default_delete<Clown>;
 }
 
 
@@ -60,4 +67,13 @@ int main()
 	unique_ptr_return();
 	free_memory();
 	make_uniq();
+	uniq_ptr_arr();
 }
+
+
+/*
+Уникальный указатель имеет передаваемое исключительное право собственности на
+один динамический объект. Можно перемещать уникальные указатели, что делает
+их переносимыми. Они также имеют исключительную собственность, поэтому их
+нельзя скопировать
+*/
