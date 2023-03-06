@@ -1,0 +1,54 @@
+#include <iostream>
+#include <memory>
+
+class Clown
+{
+public:
+	Clown() { std::cout << this << " Clown constructor" << std::endl; }
+	~Clown() { std::cout << this << " Clown destructor" << std::endl; }
+
+	void f() { std::cout << "function of Clown" << std::endl; }
+};
+
+
+void realese_memory()
+{
+	std::cout << "Освобождение памяти" << std::endl;
+	std::shared_ptr<Clown> s_ptr(new Clown);
+	s_ptr->f();
+}
+
+
+std::shared_ptr<Clown> s_ptr_f()
+{
+	std::cout << "Возвращение общего указателя" << std::endl;
+	std::shared_ptr<Clown> s_ptr(new Clown);
+	return s_ptr;
+}
+
+void reference_count()
+{
+	std::cout << "Общие указатели используют счетчик ссылок" << std::endl;
+	std::shared_ptr<Clown> s_ptr = s_ptr_f();
+}
+
+void make_sh_ptr()
+{
+	std::cout << "Создание общего указателя" << std::endl;
+	std::shared_ptr<Clown> s_ptr = std::make_shared<Clown>();
+}
+
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	realese_memory();
+	s_ptr_f();
+	reference_count();
+	make_sh_ptr();
+}
+
+/*
+std::shared_ptr можно копировать, при этом владение распределяется между всеми копиями.
+Управляемый объект удаляется, когда разрушается последняя копия std::shared_ptr.
+*/
