@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main()
+{
+	
+	std::vector<int> vec = { 1, 2, 3, 4, 5 };
+
+	int left = 2;
+	int right = 4;
+	int count = 0;
+	std::for_each(vec.begin(), vec.end(), [left, right, &count](int x)
+		{
+			if (x >= left && x <= right)
+			{
+				++count;
+			}
+		});
+	
+	std::cout << count << std::endl;
+}
